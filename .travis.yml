@@ -25,7 +25,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-east-2
   app: docke-complex
-  env: DockerComplex-env
+  env: DockeComplex-env
   bucket_name: elasticbeanstalk-us-east-2-428784827445
   bucket_path: docker-multi
   on:
