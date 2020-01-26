@@ -3,30 +3,30 @@ services:
   - docker
 
 before_install:
-  - docker build -t asilva/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t rohanluthra/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run asilva/react-test npm run test
+  - docker run rohanluthra/react-test npm run test
 
 after_success:
-  - docker build -t asilva/multi-client ./client
-  - docker build -t asilva/multi-nginx ./nginx
-  - docker build -t asilva/multi-server ./server
-  - docker build -t asilva/multi-worker ./worker
+  - docker build -t rohanluthra/multi-client ./client
+  - docker build -t rohanluthra/multi-nginx ./nginx
+  - docker build -t rohanluthra/multi-server ./server
+  - docker build -t rohanluthra/multi-worker ./worker
   #login to docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   #push images
-  - docker push asilva/multi-nginx
-  - docker push asilva/multi-client
-  - docker push asilva/multi-server
-  - docker push asilva/multi-worker
+  - docker push rohanluthra/multi-nginx
+  - docker push rohanluthra/multi-client
+  - docker push rohanluthra/multi-server
+  - docker push rohanluthra/multi-worker
 
 deploy:
   provider: elasticbeanstalk
-  region: us-east-1
-  app: multi-docker
-  env: MultiDocker-env
-  bucket_name: elasticbeanstalk-us-east-1-677505090583
+  region: us-east-2
+  app: docker-complex
+  env: DockerComplex-env
+  bucket_name: elasticbeanstalk-us-east-2-428784827445
   bucket_path: docker-multi
   on:
     branch: master
