@@ -21,6 +21,7 @@ after_success:
   - docker push rohanluthra/multi-server
   - docker push rohanluthra/multi-worker
 
+
 deploy:
   provider: elasticbeanstalk
   region: us-east-2
